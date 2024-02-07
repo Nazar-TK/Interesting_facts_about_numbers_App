@@ -1,11 +1,13 @@
-# Interesting_facts_about_numbers_App
+# Interesting Facts About Numbers App
+
 Application that allows you to get interesting facts about numbers.
 
 In this project were used:
-\nJetpack Compose
-  Retrofit
-  Dagger Hilt
-  MVVM
-  Kotlin Coroutines
-  Room Database
+- Jetpack Compose
+- Retrofit
+- Dagger Hilt
+- MVVM
+- Kotlin Coroutines
+- Room Database
+
 
