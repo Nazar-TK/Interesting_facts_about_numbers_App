@@ -7,8 +7,7 @@ interface NumberRepository {
 
     suspend fun insertNumber(number: Number)
     suspend fun getNumberInfo(number: Int): String
-
     suspend fun getRandomNumberInfo(): String
-
-    suspend fun getAllNumbers(): Flow<List<Number>>
+    fun getAllNumbers(): Flow<List<Number>>
+    suspend fun deleteNumbers(numbers: List<Number>)
 }

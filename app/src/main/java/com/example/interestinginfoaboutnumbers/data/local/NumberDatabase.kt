@@ -2,7 +2,7 @@ package com.example.interestinginfoaboutnumbers.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-
+import com.example.interestinginfoaboutnumbers.domain.model.Number
 @Database(
     entities = [Number::class],
     version = 1

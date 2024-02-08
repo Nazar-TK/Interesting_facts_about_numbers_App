@@ -10,6 +10,7 @@ import com.example.interestinginfoaboutnumbers.data.remote.NumbersApi
 import com.example.interestinginfoaboutnumbers.data.repository.NumberRepositoryImpl
 import com.example.interestinginfoaboutnumbers.domain.repository.NumberRepository
 import com.example.interestinginfoaboutnumbers.domain.use_case.AddNumberUseCase
+import com.example.interestinginfoaboutnumbers.domain.use_case.DeleteNotesUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.GetAllNumbersUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.GetNumberUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.GetRandomNumberUseCase
@@ -85,7 +86,8 @@ object NumberModule {
             addNumberUseCase = AddNumberUseCase(repository),
             getNumberUseCase = GetNumberUseCase(repository),
             getRandomNumberUseCase = GetRandomNumberUseCase(repository),
-            getAllNumbersUseCase = GetAllNumbersUseCase(repository)
+            getAllNumbersUseCase = GetAllNumbersUseCase(repository),
+            deleteNotesUseCase = DeleteNotesUseCase(repository)
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.example.interestinginfoaboutnumbers.data.local
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -18,4 +19,7 @@ interface NumbersDao {
 
     @Query("SELECT * FROM number WHERE id = :id")
     suspend fun getNumberById(id: Int): Number?
+
+    @Delete
+    suspend fun deleteNumbers(numbers: List<Number>)
 }

@@ -4,5 +4,6 @@ data class NumberUseCases(
     val addNumberUseCase: AddNumberUseCase,
     val getNumberUseCase: GetNumberUseCase,
     val getRandomNumberUseCase: GetRandomNumberUseCase,
-    val getAllNumbersUseCase: GetAllNumbersUseCase
+    val getAllNumbersUseCase: GetAllNumbersUseCase,
+    val deleteNotesUseCase: DeleteNotesUseCase
 )

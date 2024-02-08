@@ -24,16 +24,14 @@ class NumberRepositoryImpl @Inject constructor(
 
 
     override suspend fun getRandomNumberInfo(): String {
-//        val regex = Regex("\\d+")
-//        val matches = regex.find(info)
-//
-//        // Extract the first number
-//        val randomNumber = matches?.value?.toIntOrNull()
-
         return api.getRandomNumberInfo()
     }
 
-    override suspend fun getAllNumbers(): Flow<List<Number>> {
+    override fun getAllNumbers(): Flow<List<Number>> {
         return dao.getAllNumbersInfos()
+    }
+
+    override suspend fun deleteNumbers(numbers: List<Number>) {
+        dao.deleteNumbers(numbers = numbers)
     }
 }
