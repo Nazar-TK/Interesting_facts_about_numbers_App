@@ -1,9 +1,7 @@
 package com.example.interestinginfoaboutnumbers.presentation.numbers_list
 
-import android.nfc.Tag
 import android.util.Log
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,18 +9,17 @@ import com.example.interestinginfoaboutnumbers.core.utils.Resource
 import com.example.interestinginfoaboutnumbers.core.utils.UIEvent
 import com.example.interestinginfoaboutnumbers.presentation.numbers_list.components.NumberListState
 import com.example.interestinginfoaboutnumbers.domain.model.Number
-import com.example.interestinginfoaboutnumbers.domain.use_case.AddNumberUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.NumberUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HiltViewModel
 class NumbersListViewModel @Inject constructor(
     private val numberUseCases: NumberUseCases
@@ -80,7 +77,6 @@ class NumbersListViewModel @Inject constructor(
                                     else -> {Log.d(TAG, "onGetNumber NOT SAVED!!")}
                                 }
                             }.launchIn(this)
-                            Log.d(TAG, "Number is saved")
                             getNumbers()
                         }
                         is Resource.Error -> {
@@ -89,12 +85,6 @@ class NumbersListViewModel @Inject constructor(
                                 UIEvent.ShowSnackBar(
                                     result.message ?: "Unknown error"
                                 )
-                            )
-                        }
-
-                        is Resource.Loading -> {
-                            _eventFlow.emit(
-                                UIEvent.ShowProgressBar
                             )
                         }
                     }
@@ -134,11 +124,6 @@ class NumbersListViewModel @Inject constructor(
                             )
                         )
                     }
-                    is Resource.Loading -> {
-                        _eventFlow.emit(
-                            UIEvent.ShowProgressBar
-                        )
-                    }
                 }
             }.launchIn(this)
         }
@@ -146,10 +131,9 @@ class NumbersListViewModel @Inject constructor(
 
     private fun getNumbers() {
         getNumberJob?.cancel()
-        Log.d(TAG, "getNumbers HERE!")
         getNumberJob = numberUseCases.getAllNumbersUseCase()
             .onEach { numbers ->
-                Log.d(TAG, "getNumbers HERE ${numbers.size}")
+
             _state.value = state.value.copy(
                 numberListItems = numbers
             )

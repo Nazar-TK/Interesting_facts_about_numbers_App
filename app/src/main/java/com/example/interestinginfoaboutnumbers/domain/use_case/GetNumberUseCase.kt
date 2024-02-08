@@ -15,7 +15,6 @@ class GetNumberUseCase @Inject constructor(
     operator fun invoke(number: Int): Flow<Resource<String>> = flow {
 
         try {
-            emit(Resource.Loading())
             val numberInfo = repository.getNumberInfo(number)
             emit(Resource.Success(numberInfo))
         } catch (e: HttpException) {

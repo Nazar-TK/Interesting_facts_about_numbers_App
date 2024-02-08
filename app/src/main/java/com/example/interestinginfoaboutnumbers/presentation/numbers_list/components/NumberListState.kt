@@ -4,5 +4,4 @@ import com.example.interestinginfoaboutnumbers.domain.model.Number
 
 data class NumberListState (
     val numberListItems : List<Number> = emptyList(),
-    val error: String = ""
 )

@@ -7,21 +7,17 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-class GetRandomNumberUseCase @Inject constructor(
+class GetNumberByIdUseCase(
     private val repository: NumberRepository
 ) {
-
-    operator fun invoke(): Flow<Resource<String>> = flow {
+    operator fun invoke(id: Int): Flow<Resource<Number>> = flow {
 
         try {
-            val numberInfo = repository.getRandomNumberInfo()
+            val numberInfo = repository.getNumberById(id)
             emit(Resource.Success(numberInfo))
-        } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred."))
-        } catch (e: IOException) {
-            emit(Resource.Error(e.localizedMessage ?: "Could not reach the server. Check your Internet connection."))
+        } catch (e: Exception) {
+            emit(Resource.Error(e.localizedMessage ?: "Could not get information from DB."))
         }
     }
 }

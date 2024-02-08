@@ -18,7 +18,6 @@ class AddNumberUseCase @Inject constructor(
     operator fun invoke(number: Number): Flow<Resource<Any>> = flow {
 
         try {
-            emit(Resource.Loading())
             repository.insertNumber(number)
             Log.d(TAG, "Inserted successfully!")
             emit(Resource.Success(number))

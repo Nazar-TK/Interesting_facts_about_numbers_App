@@ -4,6 +4,4 @@ sealed class UIEvent {
     data class ShowSnackBar(
         val message: String,
     ) : UIEvent()
-
-    data object ShowProgressBar : UIEvent()
 }

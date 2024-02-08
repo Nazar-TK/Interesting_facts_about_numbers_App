@@ -2,16 +2,15 @@ package com.example.interestinginfoaboutnumbers.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.interestinginfoaboutnumbers.core.Constants
 import com.example.interestinginfoaboutnumbers.data.local.NumberDatabase
-import com.example.interestinginfoaboutnumbers.data.local.NumbersDao
 import com.example.interestinginfoaboutnumbers.data.remote.NumbersApi
 import com.example.interestinginfoaboutnumbers.data.repository.NumberRepositoryImpl
 import com.example.interestinginfoaboutnumbers.domain.repository.NumberRepository
 import com.example.interestinginfoaboutnumbers.domain.use_case.AddNumberUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.DeleteNotesUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.GetAllNumbersUseCase
+import com.example.interestinginfoaboutnumbers.domain.use_case.GetNumberByIdUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.GetNumberUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.GetRandomNumberUseCase
 import com.example.interestinginfoaboutnumbers.domain.use_case.NumberUseCases
@@ -54,30 +53,11 @@ object NumberModule {
         return NumberRepositoryImpl(api, db.dao)
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideAddNumberUseCase(repository: NumberRepository): AddNumberUseCase {
-//        return AddNumberUseCase(repository)
-//    }
-//
-//    @Provides
-//    @Singleton
-//    fun provideGetNumberUseCase(repository: NumberRepository): GetNumberUseCase {
-//        return GetNumberUseCase(repository)
-//    }
-//
-//    @Provides
-//    @Singleton
-//    fun provideGetRandomNumberUseCase(repository: NumberRepository): GetRandomNumberUseCase {
-//        return GetRandomNumberUseCase(repository)
-//    }
-//
-//    @Provides
-//    @Singleton
-//    fun provideGetAllNumbersUseCase(repository: NumberRepository): GetAllNumbersUseCase {
-//        return GetAllNumbersUseCase(repository)
-//    }
-
+    @Provides
+    @Singleton
+    fun provideGetNumberBuIdUseCase(repository: NumberRepository): GetNumberByIdUseCase {
+        return GetNumberByIdUseCase(repository)
+    }
 
     @Provides
     @Singleton
