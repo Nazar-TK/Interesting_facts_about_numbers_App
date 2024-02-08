@@ -15,7 +15,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -27,7 +26,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
@@ -73,14 +71,15 @@ fun NumberListScreen(
                     .padding(16.dp)
             ) {
                 TextField(
-                    value = viewModel.searchQuery.value.toString(),
-                    onValueChange = { viewModel.onNumberChanged(it) },
+                    value = if (viewModel.searchQuery.value != null) viewModel.searchQuery.value.toString() else "",
+                    onValueChange = { viewModel.onNumberChanged(it.toIntOrNull()) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier.fillMaxWidth(),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
                         focusedBorderColor = Color.Black,
                         unfocusedBorderColor = Color.Gray
-                    )
+                    ),
+                    placeholder = { Text("Enter number to find the information...") }
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Row(
